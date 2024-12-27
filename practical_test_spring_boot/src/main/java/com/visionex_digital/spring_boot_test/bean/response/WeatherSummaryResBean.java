@@ -34,9 +34,4 @@ public class WeatherSummaryResBean {
         this.hottestDay = hottestDay != null ? LocalDate.parse(hottestDay.toString()).format(formatter) : null;
         this.coldestDay = coldestDay != null ? LocalDate.parse(coldestDay.toString()).format(formatter) : null;
     }
-
-    @Builder(builderMethodName = "customBuilder")
-    public static WeatherSummaryResBean buildWithCustomConstructor(String city, double averageTemperature, LocalDate hottestDay, LocalDate coldestDay) {
-        return new WeatherSummaryResBean(city, averageTemperature, hottestDay, coldestDay);
-    }
 }

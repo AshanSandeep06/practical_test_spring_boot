@@ -31,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 @Slf4j
 public class WeatherDataAsyncServiceImpl implements WeatherDataAsyncService {
-    private final WebClient webClient = WebClient.builder().baseUrl("https://api.openweathermap.org/data/2.5").build();
+    private final WebClient webClient;
 
     @Value("${api_key}")
     private String API_KEY;
@@ -83,15 +83,6 @@ public class WeatherDataAsyncServiceImpl implements WeatherDataAsyncService {
                 coldestDay = date;
             }
         }
-
-        double averageTemp = totalTemp / lastSevenDaysEntries.size();
-
-        //        return WeatherSummaryResBean.customBuilder()
-//                .city(city)
-//                .averageTemperature(totalTemp / entries.size())
-//                .hottestDay(hottestDay)
-//                .coldestDay(coldestDay)
-//                .build();
-        return new WeatherSummaryResBean(city, averageTemp, hottestDay, coldestDay);
+        return new WeatherSummaryResBean(city, totalTemp / lastSevenDaysEntries.size(), hottestDay, coldestDay);
     }
 }
